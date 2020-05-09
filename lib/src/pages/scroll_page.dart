@@ -17,7 +17,7 @@ Widget _page1() {
   return Stack(children: <Widget>[
     _colorBackground(),
     _imageBackground(),
-    
+    _text(),
   ],
   );
 }
@@ -41,6 +41,21 @@ Widget _imageBackground(){
       fit: BoxFit.cover,
     ),
   );
+}
+Widget _text(){
+  final textStyle = TextStyle(color: Colors.white, fontSize: 50);
+  return SafeArea(
+      child: Column(
+      children: <Widget>[
+      SizedBox(height: 20.0,),
+      Text('11°', style: textStyle),
+      Text('Miercoles', style: textStyle),
+      Expanded(child: Container()),
+      Icon(Icons.keyboard_arrow_down, size:70.0, color: Colors.white)
+    ],
+    ),
+  );
+
 }
 
 }
