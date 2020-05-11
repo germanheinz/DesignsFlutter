@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -112,46 +113,51 @@ class ButtonsPage extends StatelessWidget {
       children: [
         TableRow(
           children: [
-            _createBorder(),
-            _createBorder(),
+            _createBorder(Colors.blue, Icons.border_all, 'General'),
+            _createBorder(Colors.blue, Icons.border_all, 'General'),
           ],
         ),
         TableRow(
           children: [
-            _createBorder(),
-            _createBorder(),
+            _createBorder(Colors.blue, Icons.border_all, 'General'),
+            _createBorder(Colors.blue, Icons.border_all, 'General'),
           ],
         ),
         TableRow(
           children: [
-            _createBorder(),
-            _createBorder(),
+            _createBorder(Colors.blue, Icons.border_all, 'General'),
+            _createBorder(Colors.blue, Icons.border_all, 'General'),
           ],
         ),
       ],
     );
   }
 
-  Widget _createBorder(){
-    return Container(
-      height: 180.0,
-      margin: EdgeInsets.all(6.0),
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(62, 66, 107, 0.7),
-        borderRadius: BorderRadius.circular(20.0)
-      ),
-      child: Column(
-        mainAxisAlignment:  MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          SizedBox(height: 10.0),
-           CircleAvatar(
-             backgroundColor: Colors.pinkAccent,
-             radius: 35.0,
-             child: Icon(Icons.swap_calls, color: Colors.white, size: 30.0),
-           ),
-           Text('thing', style: TextStyle(color: Colors.pink)),
-           SizedBox(height: 10.0),
-        ],
+  Widget _createBorder(Color color, IconData icon, String text){
+    return ClipRect(
+          child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 1.0, sigmaY: 1.0),
+          child: Container(
+          height: 180.0,
+          margin: EdgeInsets.all(6.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107, 0.7),
+            borderRadius: BorderRadius.circular(20.0)
+          ),
+          child: Column(
+            mainAxisAlignment:  MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(height: 10.0),
+               CircleAvatar(
+                 backgroundColor: Colors.pinkAccent,
+                 radius: 35.0,
+                 child: Icon(icon, color: Colors.white, size: 30.0),
+               ),
+               Text(text, style: TextStyle(color: color)),
+               SizedBox(height: 10.0),
+            ],
+          ),
+        ),
       ),
     );
   }
