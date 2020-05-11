@@ -10,8 +10,16 @@ class ButtonsPage extends StatelessWidget {
       body: Stack(
         children: <Widget>[
             _background(),
+            SingleChildScrollView(
+              child: Column(
+                  children: <Widget>[
+                    _title(),
+                  ],
+              ),
+            ),
         ],
       ),
+      bottomNavigationBar: _bottomNavigationBar(context),
     );
   }
   Widget _background(){
@@ -46,6 +54,8 @@ class ButtonsPage extends StatelessWidget {
       ),
       ),
     );
+
+    
     return Stack(
       children: <Widget>[
         gradient,
@@ -54,5 +64,45 @@ class ButtonsPage extends StatelessWidget {
           child: pinkBox)
       ],
     );
+  }
+
+  Widget _title(){
+    return SafeArea(
+      child: Container(
+        padding: EdgeInsets.all(20.0),
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('Classify transaction', style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10.0),
+              Text('Classify this transaction into a particular category', style: TextStyle(color: Colors.white, fontSize: 20.0, fontWeight: FontWeight.bold)),
+            ],
+            ),
+        ),
+      ),
+    );
+  }
+
+  Widget _bottomNavigationBar(BuildContext context){
+    return Theme(
+      data: Theme.of(context).copyWith(
+      canvasColor: Color.fromRGBO(55, 57, 84, 1.0),
+      primaryColor: Colors.pinkAccent,
+      textTheme: Theme.of(context).textTheme.copyWith(caption: TextStyle(color: Color.fromRGBO(116, 117, 152, 1.0)))
+    ),
+    child: BottomNavigationBar(
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.calendar_today),
+          title: Container(),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.star),
+          title: Container(),
+        ),
+      ],
+    ),
+  );
   }
 }
